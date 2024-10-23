@@ -1,0 +1,518 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  --appTeme: rgb(22, 22, 22);
+  --fontTheme: aliceblue;
+}
+
+html, body, #root {
+  min-height: 100vh;
+  width: 100vw;
+  overflow-y: auto;
+  overflow-x: auto;
+}
+
+.App {
+  min-height: 100vh;
+  width: 100%;
+  background-color: var(--appTeme);
+  color: var(--fontTheme);
+}
+
+.login_activity_main {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url('../public/dots.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 43%;
+}
+
+@keyframes up_down_moving {
+  0%, 100% {
+    transform: translateY(0vh);
+  }
+
+  25% {
+    transform: translateY(1vh);
+  }
+
+  50% {
+    transform: translateY(0vh);
+  }
+
+  75% {
+    transform: translateY(-1vh);
+  }
+}
+
+.div_for_style_1 {
+  position: absolute;
+  top: 20%;
+  left: 8%;
+  align-self: flex-end;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  animation: up_down_moving linear 2s infinite;
+}
+
+.div_for_style_1 img {
+  height: 18vh;
+}
+
+.div_for_style_2 {
+  position: absolute;
+  bottom: 20%;
+  left: 8%;
+  align-self: flex-end;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  animation: up_down_moving linear 2s infinite;
+}
+
+.div_for_style_2 img {
+  height: 18vh;
+}
+
+.div_for_style_3 {
+  position: absolute;
+  top: 20%;
+  right: 8%;
+  align-self: flex-end;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  animation: up_down_moving linear 2s infinite;
+  animation-delay: 0s;
+}
+
+.div_for_style_3 img {
+  height: 18vh;
+}
+
+.div_for_style_4 {
+  position: absolute;
+  bottom: 20%;
+  right: 8%;
+  align-self: flex-end;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  animation: up_down_moving linear 2s infinite;
+  animation-delay: 0s;
+}
+
+.div_for_style_4 img {
+  height: 20vh;
+}
+
+.login_activity_card {
+  position: absolute;
+  background-color: var(--fontTheme);
+  color: var(--appTeme);
+  min-height: fit-content;
+  min-width: 18%;
+  padding: 3vh;
+  border: 0.1vh solid aliceblue;
+  background-color: transparent;
+  border-radius: 1.5vh;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 2vh;
+  background-color: var(--appTeme);
+}
+
+input:focus {
+  outline: none;
+}
+
+.login_activity_card input {
+  width: 90%;
+  background-color: transparent;
+  padding: 0.7vh;
+  border: 0;
+  /* color: var(--fontTheme); */
+  color: aliceblue;
+  border-bottom: 0.1vh solid aliceblue;
+  font-size: 2.2vh;
+}
+
+.login_activity_card input::placeholder {
+  color: rgb(198, 198, 198);
+}
+
+.login_activity_card>div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 1.5vh;
+}
+
+.login_activity_card>div>div {
+  display: flex;
+  gap: 1.5vh;
+  min-width: 90%;
+  color: var(--fontTheme);
+  font-size: 2vh;
+  ;
+  justify-content: center;
+  align-items: center;
+}
+
+.image_icon {
+  font-size: 2.6vh;
+  color: aliceblue;
+}
+
+.dont_have_account_div {
+  margin-top: 10%;
+  margin-bottom: 10%;
+}
+
+.login_button_div {
+  width: 100%;
+  margin-top: auto;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 1.8vh !important;
+}
+
+.login_button_div>div {
+  width: 100%;
+  position: relative;
+}
+
+.login_button_div>div {
+  background-color: aliceblue;
+  border: 0.2vh solid aliceblue;
+  padding: 0.6vh 0.6vh 1vh 0.6vh;
+  font-size: 2.2vh;
+  border-radius: 1vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--appTeme);
+  transition-duration: 0.3s;
+}
+
+.login_button_div>div:hover {
+  background-color: var(--appTeme);
+  color: aliceblue;
+  border: 0.2vh solid royalblue;
+}
+
+.login_button_div>div>div {
+  min-height: fit-content;
+}
+
+.login_button_div img {
+  height: 2.5vh;
+}
+
+.image_login {
+  position: absolute;
+  left: 5%;
+  top: 20%;
+}
+
+.activity_login_changer {
+  color: rgb(0, 0, 193);
+  text-decoration-line: underline;
+}
+
+@keyframes fade_in_login {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fade_in_register {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.add_card_login {
+  animation: fade_in_login linear 0.8s forwards;
+}
+
+.add_card_register {
+  animation: fade_in_register linear 0.8s forwards;
+}
+
+.home_component_main {
+  min-height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.home_component_main>div {
+  height: 100vh;
+  display: flex;
+  padding: 2vh;
+}
+
+.home_component_logs_div {
+  border-right: 0.1vh solid gray;
+  flex: 2 0 20vw;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  scrollbar-width: none;
+  gap: 1vh;
+  min-width: 500px;
+}
+
+.home_component_logs_div>div>div:nth-child(1) {
+  margin-top: 4vh;
+}
+
+.logs_div_main {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 1.5vh;
+}
+
+.logs_div_main>div {
+  min-width: 100%;
+  border: 0.1vh solid grey;
+  padding: 1vh;
+  border-radius: 0.5vh;
+}
+
+.log-warning {
+  color: yellow;
+  transition-duration: 0.3s;
+}
+
+.log-warning:hover {
+  background-color: blueviolet;
+  transform: scaleY(1.1) scaleX(1.01);
+}
+
+.log-error {
+  color: red;
+  transition-duration: 0.3s;
+}
+
+.log-error:hover {
+  background-color: red;
+  color: aliceblue;
+  transform: scaleY(1.1) scaleX(1.01);
+}
+
+.log-normal {
+  color: lime;
+}
+
+.logs_name {
+  position: absolute;
+  top: 0;
+  left: 0%;
+  background-color: transparent;
+  backdrop-filter: blur(0.3vh);
+  /* border: 0.2vh solid aliceblue; */
+  border-bottom: 0.2vh solid gray;
+  border-right: 0.2vh solid gray;
+  border-top: 0;
+  font-weight: 500;
+  font-size: 2.5vh;
+  width: 70%;
+  color: aliceblue;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.8vh;
+  background-color: var(--appTeme);
+  min-width: 70vw;
+}
+
+.home_component_chatbot_div {
+  flex: 1 999 5vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.home_component_chatbot_div img {
+  height: 30vh;
+  filter: drop-shadow(0px 0px 10vh royalblue);
+}
+
+@media (max-width:825px) {
+  .home_component_chatbot_div img {
+    height: 10vh;
+    filter: drop-shadow(0px 0px 10vh royalblue);
+  }
+
+  .home_component_chatbot_image_and_text_div {
+    font-size: 1.5vh;
+  }
+
+  .home_component_main {
+    flex-wrap: wrap;
+  }
+
+  .home_component_main>div {
+    padding: 1vh;
+  }
+
+  .logs_name {
+    width: 100vw;
+  }
+
+  .home_component_logs_div {
+    min-width: 400px;
+  }
+}
+
+.home_component_chatbot_image_and_text_div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.home_component_chat_box_div {
+  width: 100%;
+  min-height: 60vh;
+  overflow-x: auto;
+  /* border: 0.2vh solid aliceblue; */
+  padding: 5vh 2vh 2vh 2vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+}
+
+.home_component_chat_box_div>div {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.home_component_query_div {
+  width: 75% !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.home_component_query_div>div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.home_component_query_div>div:nth-child(1) {
+  flex-basis: 200%;
+}
+
+.home_component_query_div>div:nth-child(2) {
+  flex-grow: 3;
+}
+
+.chatbot_query_input {
+  width: 100%;
+  border: 0.3vh solid rebeccapurple;
+  font-size: 2vh;
+  padding: 1vh;
+  background-color: black;
+  color: aliceblue;
+  border-radius: 0.5vh;
+}
+
+.query_image {
+  height: 5vh !important;
+}
+
+.home_component_query_output_div {
+  width: 90% !important;
+  height: 100%;
+}
+
+@keyframes up_down_loading {
+  0%, 100% {
+    transform: translateY(0vh);
+  }
+
+  25% {
+    transform: translateY(-1vh);
+  }
+
+  50% {
+    transform: translateY(0vh);
+  }
+
+  75% {
+    transform: translateY(1vh);
+  }
+}
+
+.waiting_animation {
+  height: 50%;
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  gap: 4%;
+}
+
+.waiting_animation>div {
+  height: 5%;
+  width: 5%;
+  border-radius: 50%;
+  background-color: aliceblue;
+}
+
+.waiting_animation_1 {
+  animation: up_down_loading 1s linear infinite forwards;
+  animation-delay: 0;
+}
+
+.waiting_animation_2 {
+  animation: up_down_loading 1s linear infinite forwards;
+  animation-delay: 0.25s;
+}
+
+.waiting_animation_3 {
+  animation: up_down_loading 1s linear infinite forwards;
+  animation-delay: 0.50s;
+}
+
+.waiting_animation_4 {
+  animation: up_down_loading 1s linear infinite forwards;
+  animation-delay: 1s;
+}

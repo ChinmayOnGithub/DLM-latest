@@ -1,0 +1,5 @@
+{
+  "projects": {
+    "default": "docker-kubernetes-logs-manager"
+  }
+}
