@@ -143,7 +143,7 @@ app.get('/api/logs', async (req, res) => {
 
     // Search for logs in the specified index
     const result = await client.search({
-      index: 'rrr-logs', // Adjust the index pattern if necessary
+      index: 'sample-index', // Adjust the index pattern if necessary
       body: {
         query: {
           match_all: {} // Fetch all logs from the index
@@ -253,17 +253,17 @@ app.listen(port, () => {
 //     });
 
 
-//     console.log("Elasticsearch response:", result); // Log the entire response
-//     // Map the result to format the response
-//     const logs = result.body.hits.hits.map(hit => ({
-//       message: hit._source.message,
-//       timestamp: hit._source['@timestamp'],
-//       // tags: hit._source.tags || [],  // Add tags if available
-//       container: hit._source.container?.name || "N/A",  // Add container name
-//       pod: hit._source.kubernetes?.pod?.name || "N/A",  // Add pod name
-//       namespace: hit._source.kubernetes?.namespace || "N/A",  // Add namespace info
-//       level: hit._source.log?.level || "info" // Add log level if available
-//     }));
+// console.log("Elasticsearch response:", result); // Log the entire response
+// // Map the result to format the response
+// const logs = result.body.hits.hits.map(hit => ({
+//   message: hit._source.message,
+//   timestamp: hit._source['@timestamp'],
+//   // tags: hit._source.tags || [],  // Add tags if available
+//   container: hit._source.container?.name || "N/A",  // Add container name
+//   pod: hit._source.kubernetes?.pod?.name || "N/A",  // Add pod name
+//   namespace: hit._source.kubernetes?.namespace || "N/A",  // Add namespace info
+//   level: hit._source.log?.level || "info" // Add log level if available
+// }));
 
 
 //     res.json(logs);
