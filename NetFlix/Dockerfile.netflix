@@ -1,0 +1,18 @@
+# Use the official NGINX base image
+FROM nginx:alpine
+
+# Copy the HTML and CSS files to the NGINX html directory
+# Adjust the source path if the files are in different subdirectories within 'NetFlix'
+COPY index.html style.css innerData.html /usr/share/nginx/html/
+
+# Copy any additional static assets if needed (e.g., images, JS)
+COPY ./public /usr/share/nginx/html/public/
+
+# Copy the custom nginx.conf file
+COPY ./nginx.conf /etc/nginx/nginx.conf
+
+# Expose port 80
+EXPOSE 80
+
+# Start the NGINX server
+CMD ["nginx", "-g", "daemon off;"]

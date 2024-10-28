@@ -1,9 +1,18 @@
+:root {
+  --appTheme: rgb(28, 28, 28);
+  --fontTheme: aliceblue;
+  --warning-color: yellow;
+  --error-color: red;
+  --default-color: lime;
+  --warning-color-hover: rgb(232, 169, 11);
+  --error-color-hover: red;
+}
+
 * {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
-  --appTeme: rgb(28, 28, 28);
-  --fontTheme: aliceblue;
+
 }
 
 html, body, #root {
@@ -16,7 +25,7 @@ html, body, #root {
 .App {
   min-height: 100vh;
   width: 100%;
-  background-color: var(--appTeme);
+  background-color: var(--appTheme);
   color: var(--fontTheme);
 }
 
@@ -120,11 +129,11 @@ html, body, #root {
 .login_activity_card {
   position: absolute;
   background-color: var(--fontTheme);
-  color: var(--appTeme);
+  color: var(--appTheme);
   min-height: fit-content;
   min-width: 18%;
   padding: 3vh;
-  border: 0.1vh solid aliceblue;
+  border: 0.1vh solid var(--fontTheme);
   background-color: transparent;
   border-radius: 1.5vh;
   display: flex;
@@ -133,7 +142,7 @@ html, body, #root {
   flex-direction: column;
   flex-wrap: wrap;
   gap: 2vh;
-  background-color: var(--appTeme);
+  background-color: var(--appTheme);
 }
 
 input:focus {
@@ -146,8 +155,8 @@ input:focus {
   padding: 0.7vh;
   border: 0;
   /* color: var(--fontTheme); */
-  color: aliceblue;
-  border-bottom: 0.1vh solid aliceblue;
+  color: var(--fontTheme);
+  border-bottom: 0.1vh solid var(--fontTheme);
   font-size: 2.2vh;
 }
 
@@ -176,7 +185,7 @@ input:focus {
 
 .image_icon {
   font-size: 2.6vh;
-  color: aliceblue;
+  color: var(--fontTheme);
 }
 
 .dont_have_account_div {
@@ -191,6 +200,7 @@ input:focus {
   justify-content: center;
   flex-direction: column;
   gap: 1.8vh !important;
+  cursor: pointer;
 }
 
 .login_button_div>div {
@@ -199,21 +209,21 @@ input:focus {
 }
 
 .login_button_div>div {
-  background-color: aliceblue;
-  border: 0.2vh solid aliceblue;
+  background-color: var(--fontTheme);
+  border: 0.2vh solid var(--fontTheme);
   padding: 0.6vh 0.6vh 1vh 0.6vh;
   font-size: 2.2vh;
   border-radius: 1vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  color: var(--appTeme);
+  color: var(--appTheme);
   transition-duration: 0.3s;
 }
 
 .login_button_div>div:hover {
-  background-color: var(--appTeme);
-  color: aliceblue;
+  background-color: var(--appTheme);
+  color: var(--fontTheme);
   border: 0.2vh solid royalblue;
 }
 
@@ -265,32 +275,52 @@ input:focus {
 }
 
 .home_component_main {
-  min-height: 100vh;
-  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3vh;
+  max-height: 100vh;
+}
+
+.logout_img {
+  background-color: transparent;
+  border: 0;
+  cursor: pointer;
+}
+
+.theme_img {
+  border: 0;
+  cursor: pointer;
+  background-color: aliceblue;
+  border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 0.1rem;
 }
 
-.home_component_main>div {
-  height: 100vh;
+.theme_img img {
+  height: 20px;
+}
+
+.right_side {
   display: flex;
-  padding: 2vh;
+  justify-content: center;
+  align-items: center;
+  gap: 0.8rem;
 }
 
 .home_component_logs_div {
-  border-right: 0.1vh solid gray;
-  flex: 2 0 20vw;
   display: flex;
   flex-direction: column;
   overflow-y: auto;
   scrollbar-width: none;
   gap: 1vh;
-  min-width: 500px;
-}
-
-.home_component_logs_div>div>div:nth-child(1) {
-  margin-top: 4vh;
+  width: 80vw;
+  padding: 1.5vh;
+  min-width: 400px;
+  /* background-color: #ddd; */
+  border-radius: 20px 20px 0px 0px;
 }
 
 .logs_div_main {
@@ -309,48 +339,73 @@ input:focus {
 }
 
 .log-warning {
-  color: yellow;
+  color: var(--warning-color);
   transition-duration: 0.3s;
 }
 
 .log-warning:hover {
-  background-color: blueviolet;
+  background-color: var(--warning-color-hover);
+  color: aliceblue;
   transform: scaleY(1.1) scaleX(1.01);
 }
 
 .log-error {
-  color: red;
+  color: var(--error-color);
   transition-duration: 0.3s;
 }
 
 .log-error:hover {
-  background-color: red;
+  background-color: var(--error-color-hover);
   color: aliceblue;
   transform: scaleY(1.1) scaleX(1.01);
 }
 
 .log-normal {
-  color: lime;
+  color: var(--default-color);
+}
+
+@keyframes slide_in_and_go {
+  0% {
+    transform: translateY(-10vh);
+  }
+
+  25% {
+    transform: translateY(0vh);
+  }
+
+  75% {
+    transform: translateY(0vh);
+  }
+
+  100% {
+    transform: translateY(-10vh);
+  }
+}
+
+#log_copied_message_div {
+  position: absolute;
+  top: 4vh;
+  padding: 0.6vh 2.5vh;
+  border: 0.2vh solid gray;
+  z-index: 1001;
+  background-color: var(--appTheme);
+  animation: slide_in_and_go 1s forwards;
 }
 
 .logs_name {
-  position: absolute;
-  top: 0;
-  left: 0%;
-  background-color: var(--appTeme);
+  background-color: var(--appTheme);
   border-bottom: 0.2vh solid gray;
-  border-top: 0;
   font-weight: 500;
   font-size: 2.5vh;
-  width: 100%;
-  color: aliceblue;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 0.8vh;
+  width: 100vw;
+  color: var(--fontTheme);
+  padding: 1vh 2vh;
   z-index: 1000;
-  min-width: 70vw;
-  height: 40px;
+  max-height: 10vh;
+  width: 100vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .home_component_chatbot_div {
@@ -382,10 +437,6 @@ input:focus {
 
   .home_component_main>div {
     padding: 1vh;
-  }
-
-  .logs_name {
-    width: 100vw;
   }
 
   .home_component_logs_div {
@@ -495,23 +546,16 @@ input:focus {
 } */
 
 .home_component_filter_div {
-  width: max-content;
-  border-right: 0.1vh solid gray;
-}
 
-.home_component_filter_div>div {
-  margin-top: 40px;
-  height: calc(100% - 40px);
-}
-
-.home_component_filter_div_inner {
+  /* background-color: rgb(214, 214, 214); */
   display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
   padding: 1vh;
-  padding-top: 10vh;
-  gap: 4vh;
-  font-size: 2.5vh;
+  width: fit-content;
+  border-radius: 2rem;
+  padding: 16px 50px;
 }
 
 .checkbox_label_div {
@@ -521,24 +565,35 @@ input:focus {
   gap: 1.5vh;
 }
 
+.checkbox_label_div label {
+  cursor: pointer;
+}
+
 .checkbox_label_div input {
   border: 2px solid red;
+  cursor: pointer;
 }
 
 .div_filter_btn>button {
   background-color: var(--fontTheme);
   border: 0;
+  height: min-content;
   font-size: 2.2vh;
-  color: var(--appTeme);
-  padding: 0.3vh 1vh;
-  border-radius: 0.5vh;
+  color: var(--appTheme);
+  padding: 0.5vh 1.5vh;
+  border-radius: 0.2rem;
   width: 100%;
   transition-duration: 0.3s;
+  cursor: pointer;
+  background-color: crimson;
+  color: aliceblue;
+  border: 0.1rem solid transparent;
 }
 
 .div_filter_btn>button:hover {
-  background-color: crimson;
-  color: aliceblue;
+  background-color: aliceblue;
+  color: black;
+  border: 0.1rem solid crimson;
 }
 
 .copied-message {
@@ -549,7 +604,7 @@ input:focus {
   right: -5%;
   height: min-content !important;
   transform: translateX(-50%);
-  background-color: var(--appTeme);
+  background-color: var(--appTheme);
   color: aliceblue;
   background-color: rgba(0, 0, 0, 0.599);
   border: 1px solid aliceblue;
@@ -570,9 +625,9 @@ input:focus {
   position: fixed;
   bottom: 10vh;
   right: 20px;
-  background-color: rgb(35, 35, 35);
-  /* border-radius: 10px; */
-  box-shadow: 0 0 2px gainsboro;
+  background-color: var(--appTheme);
+  border-radius: 0.5rem;
+  box-shadow: 0 0 2px var(--fontTheme);
   display: flex;
   flex-direction: column;
   display: none;
@@ -583,8 +638,8 @@ input:focus {
   background-color: #007bff;
   color: white;
   padding: 10px;
-  /* border-top-left-radius: 10px; */
-  /* border-top-right-radius: 10px; */
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
   text-align: center;
   font-weight: bold;
 }
@@ -643,10 +698,12 @@ input:focus {
   top: 5px;
   right: 5px;
   cursor: pointer;
-  background-color: transparent;
+  background-color: black;
+  border-radius: 1rem;
   display: flex;
   justify-content: center;
   align-items: center;
+  border: 0.1rem solid aliceblue;
 }
 
 #image_send img {
@@ -687,7 +744,7 @@ input[type="text"] {
   outline: none;
 }
 
-button {
+.floating-button {
   background-color: #007bff;
   color: white;
   border: none;
@@ -697,7 +754,7 @@ button {
   cursor: pointer;
 }
 
-button:hover {
+.floating-button:hover {
   background-color: #0056b3;
 }
 
@@ -739,4 +796,10 @@ button:hover {
 
 .copy_log_div button {
   background-color: transparent;
+}
+
+.message_div {
+  position: absolute;
+  bottom: -5vh;
+  color: var(--fontTheme);
 }

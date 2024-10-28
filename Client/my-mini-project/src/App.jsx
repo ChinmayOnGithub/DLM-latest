@@ -11,15 +11,27 @@ import LoginActivity from "./Page/LoginActivity";
 import HomeComponent from "./Page/HomeComponent";
 
 function App() {
-  const [auth, setAuth] = React.useState(false);
-  const navigate = useNavigate(); // Use the navigate hook inside the Router
+  const [auth, setAuth] = React.useState(
+    localStorage.getItem("authLocal") === "true" // Check initial value on load
+  );
+  const navigate = useNavigate();
+
+  React.useEffect(() => {
+    if (auth) {
+      navigate("/Home");
+    } else {
+      navigate("/Login");
+    }
+  }, [auth, navigate]);
 
   function setAuthToTrue() {
     setAuth(true);
+    localStorage.setItem("authLocal", true);
   }
 
   function setAuthToFalse() {
     setAuth(false);
+    localStorage.setItem("authLocal", false);
   }
 
   React.useEffect(() => {

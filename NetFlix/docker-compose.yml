@@ -1,0 +1,16 @@
+version: "3.8"
+
+services:
+  netflix:
+    build:
+      context: .
+      dockerfile: Dockerfile.netflix
+    image: i1 # Replace with your actual image name if different
+    container_name: s1
+    ports:
+      - "80:80" # Map container's port 80 to host's port 80
+    volumes:
+      - ./logs/access.log:/var/log/nginx/access.log
+      - ./logs/error.log:/var/log/nginx/error.log
+    environment:
+      - NGINX_LOG_LEVEL=info # Optional: adjust log level if needed

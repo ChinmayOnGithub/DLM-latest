@@ -1,0 +1,288 @@
+*{
+    padding: 0;
+    margin: 0;
+    font-family: sans-serif;
+    box-sizing: border-box;
+}
+body{
+    height: 100vh;
+    width: 97.8vw;
+    background-color: #141414;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.main_div{
+    height: 60vh;
+    width: 70vw;
+}
+.whos_watching_div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.whos_watching_div>p{
+    font-size: 70px;
+    color: whitesmoke;
+}
+.profiles_images_div{
+    background-color: #141414;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2vw;
+    height: 30vh;
+    margin-top: 5vh;
+}
+.profiles_images_div img{
+    height: 200px;
+    width: 200px;
+}
+.profiles_images_div_inner_blue{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: rgb(85, 85, 85);
+    font-size: 25px;
+}
+.profiles_images_div_inner_blue:hover{
+    color: whitesmoke;
+    .profiles_images_div_inner_blue_img_div{
+        border: 1px solid whitesmoke;
+    }
+}
+.profiles_images_div_inner_darkblue{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: rgb(85, 85, 85);
+    font-size: 25px;
+}
+.profiles_images_div_inner_darkblue:hover{
+    color: whitesmoke;
+    .profiles_images_div_inner_darkblue_img_div{
+        border: 1px solid whitesmoke;
+    }
+}
+.profiles_images_div_inner_yellow{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: rgb(85, 85, 85);
+    font-size: 25px;
+}
+.profiles_images_div_inner_yellow:hover{
+    color: whitesmoke;
+    .profiles_images_div_inner_yellow_img_div{
+        border: 1px solid whitesmoke;
+    }
+}
+.profiles_images_div_inner_red{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: rgb(85, 85, 85);
+    font-size: 25px;
+}
+.profiles_images_div_inner_red:hover{
+    color: whitesmoke;
+    .profiles_images_div_inner_red_img_div{
+        border: 1px solid whitesmoke;
+    }
+}
+.profiles_images_div_inner_green{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: rgb(85, 85, 85);
+    font-size: 25px;
+}
+.profiles_images_div_inner_green:hover{
+    color: whitesmoke;
+    .profiles_images_div_inner_green_img_div{
+        border: 1px solid whitesmoke;
+    }
+}
+.manage_profiles_div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: rgb(85, 85, 85);
+}
+.manage_profiles_div_inner{
+    margin-top: 100px;
+    border: 1px solid rgb(85, 85, 85);
+    padding: 15px 25px;
+    font-size: 25px;
+    letter-spacing: 3px;
+}
+.manage_profiles_div_inner:hover{
+    color: whitesmoke;
+    border: 1px solid whitesmoke;
+}
+a{
+    color: transparent;
+}
+.inner_data_main{
+    height: 100vh;
+    width: 100vw;
+}
+.inner_data_video{
+    object-fit: cover;
+    height: 110vh;
+    width: 100vw;
+    padding: 0;
+    margin: 0;
+}
+.header_inner{
+    box-sizing: border-box;
+    max-width: 100vw;
+    width: 100vw;
+    height: 8vh;
+    top: 0;
+    position:absolute;
+    background-color:transparent;
+    display: flex;
+    align-items: center;
+}
+.netflix_logo{
+    height: 3vh;
+    margin-left: 4vw;
+    margin-right: 1vw;
+}
+.header_inner_first{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.6vw;
+    color: whitesmoke;
+    gap: 1.2vw;
+}
+.header_inner_second{
+    margin-left: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size:1.3vw;
+    color: whitesmoke;
+    font-weight:500;
+    gap: 1vw;
+    margin-right: 2vw;
+}
+#image_profile{
+    height: 3.5vh;
+    border-radius: 5px;
+}
+.button_div{
+    display: flex;
+    position: absolute;
+    top: 75vh;
+    left: 3vw;
+    justify-content: center;
+    gap: 1vw;
+}
+.play_button{
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    padding: 0.5vw 2vw;
+    border-radius: 5px;
+    font-size: 1.2vw;
+    font-weight: bold;
+}
+.more_info_button{
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    border-radius: 5px;
+    background-color:rgba(204, 204, 204, 0.342);
+    padding: 0.5vw 2vw;
+    font-size: 1.2vw;
+    font-weight: bold;
+    color: whitesmoke;
+}
+.below_video_div_main{
+    height: 100vh;
+    width: 100vw;
+    background-color: #141414;
+    padding: 1vw 4vw;
+}
+.skip_the_queue_text_div{
+    position: absolute;
+    top: 92vh;
+    display: flex;
+    flex-direction: column;
+}
+.skip_the_queue_text_div p{
+    color: whitesmoke;
+    font-size: 3.2vh;
+    font-weight: 600;
+}
+.skip_the_queue_text_div_posters_div{
+    margin-top: 3vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 0.3vw;
+
+}
+.skip_the_queue_text_div_posters_div img{
+    width: 260px;
+    height: 150px;
+    transition-duration: 0.5s;
+    object-fit: cover;
+}
+.more_info_card_below_with_img_div{
+    transition-duration: 0.5s;
+
+}
+.more_info_card_below_with_img_div h3{
+    font-weight: lighter;
+    font-size: small;
+    color: whitesmoke;
+    visibility: collapse;
+    margin-top: 10px;
+    padding-left: 10px;
+    padding-bottom: 15px;
+}
+.more_info_card_below_with_img_div:hover{
+    transform: scale(1.2);
+    box-shadow: 0px 0px 10px black; 
+}
+.more_info_card_below_with_img_div:hover .more_info_card_below_with_img_div_info{
+    height: 100px;
+}
+.more_info_card_below_with_img_div:hover .more_info_card_below_with_img_div_info img{
+    visibility: visible;
+}
+.more_info_card_below_with_img_div:hover h3{
+    font-weight: lighter;
+    font-size: small;
+    visibility: visible;
+}
+
+.more_info_card_below_with_img_div_info{
+    height: 0px;
+    width: 260px;
+    background-color: #141414;
+    padding-left: 10px;
+}
+.more_info_card_below_with_img_div_info img{
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    background-color: #141414;
+    border: 1px solid whitesmoke;
+    visibility: hidden;
+}
+.more_info_card_below_with_img_div_info img:nth-child(2){
+    height: 40px;
+    width: 40px;
+    padding: 7px;
+}
+.more_info_card_below_with_img_div_info img:nth-child(3){
+    height: 40px;
+    width: 40px;
+    padding: 8px;
+}
