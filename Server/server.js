@@ -113,6 +113,11 @@ import axios from 'axios';
 import bodyParser from 'body-parser';
 import { GoogleGenerativeAI } from '@google/generative-ai';
 import dotenv from 'dotenv';
+import WebSocket from 'ws';
+import pg from "pg";
+import bcrypt from 'bcrypt';
+
+
 
 dotenv.config();
 
@@ -120,14 +125,29 @@ dotenv.config();
 // Create an Express application
 const app = express();
 const port = 3001; // Define the port for the server
+app.use(cors({
+  origin: '*'
+}));
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }));
 
 // Middleware to enable CORS (Cross-Origin Resource Sharing)
 // This allows requests from different origins (like your frontend)
 // app.use(cors());
+const { Pool } = pg;
 
-app.use(cors({
-  origin: '*'
-}));
+const db = new Pool({
+  connectionString: process.env.POSTGRES_URL,
+})
+try {
+  db.connect();
+  console.log("pool connected ")
+
+} catch (error) {
+  console.log("Error connecting pool")
+}
+
+
 
 // Create an instance of the Elasticsearch client
 const client = new Client({
@@ -143,7 +163,7 @@ app.get('/api/logs', async (req, res) => {
 
     // Search for logs in the specified index
     const result = await client.search({
-      index: 'sample-index', // Adjust the index pattern if necessary
+      index: 'ram-logs', // Adjust the index pattern if necessary
       body: {
         query: {
           match_all: {} // Fetch all logs from the index
@@ -164,6 +184,126 @@ app.get('/api/logs', async (req, res) => {
     // Send a 500 error response to the client
     res.status(500).send('Error fetching logs');
   }
+});
+// ===================
+
+
+
+// const db = new pg.Client({
+//   user: "postgres",
+//   host: "localhost",
+//   database: "miniproject",
+//   password: "db#2004",
+//   port: 5432
+// });
+// db.connect();
+
+//==================================AUTHENTICATION API===================================================
+//==================================AUTHENTICATION API==================================================nc =
+
+app.put('/addUser', async (req, res) => {
+  try {
+    const username = req.query.username;
+    const password = req.query.password;
+    console.log("INSIDE ADD USER");
+    const saltRound = 5;
+    const hashedPassword = await bcrypt.hash(password, saltRound);
+    const checkerResult = await db.query("SELECT * FROM users WHERE username=$1", [username]);
+    if (checkerResult.rowCount > 0) {
+      res.send({
+        'success': 'no',
+        'status': 'user already found'
+      });
+    } else {
+      await db.query("INSERT INTO users(username,password) VALUES($1,$2)", [username, hashedPassword]);
+      res.send({
+        'success': 'yes',
+        'status': "user added"
+      })
+    }
+  } catch (error) {
+    res.send({ 'error': error });
+  }
+});
+app.get('/verifyUser', async (req, res) => {
+  try {
+    const inputPassword = req.query.password;
+    const inputUsername = req.query.username;
+    const result = await db.query("SELECT password FROM users WHERE username=$1", [inputUsername]);
+    console.log(result.rows)
+    if (result.rows.length === 0) {
+      return res.send({ authenticate: false, "message": "User not found" });
+    }
+    const hashedPassword = result.rows[0].password;
+    const isMatching = await bcrypt.compare(inputPassword, hashedPassword);
+    res.send({ authenticate: isMatching });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send({ authenticate: false, "message": "Internal server error" });
+  }
+});
+
+
+
+// // ========================================websocket code==========================================
+// // Create an HTTP server and WebSocket server
+// const server = app.listen(port, () => {
+//   console.log(`Server running on http://localhost:${port}`);
+// });
+
+// const wss = new WebSocket.Server({ server });
+
+// // Handle WebSocket connections
+// wss.on('connection', (ws) => {
+//   console.log("New client connected");
+
+//   // Function to fetch logs and send to WebSocket clients
+//   const fetchAndSendLogs = async () => {
+//     try {
+//       const result = await client.search({
+//         index: 'chini-logs',
+//         body: {
+//           query: {
+//             match_all: {}
+//           },
+//           size: 50
+//         }
+//       });
+
+//       // Send fetched logs to all connected WebSocket clients
+//       const logs = result.hits.hits;
+//       const formattedLogs = logs.map(log => ({
+//         id: log._id,
+//         ...log._source, // Include the log data (you can customize this)
+//       }));
+
+//       // Broadcast the logs to all clients
+//       wss.clients.forEach(client => {
+//         if (client.readyState === WebSocket.OPEN) {
+//           client.send(JSON.stringify(formattedLogs));
+//         }
+//       });
+//     } catch (error) {
+//       console.error('Error fetching logs for WebSocket:', error);
+//     }
+//   };
+
+//   // Send logs immediately upon connection
+//   fetchAndSendLogs();
+
+//   // Set an interval to fetch logs periodically (every 5 seconds)
+//   const intervalId = setInterval(fetchAndSendLogs, 5000);
+
+//   ws.on('close', () => {
+//     console.log("Client disconnected");
+//     clearInterval(intervalId); // Clear the interval when client disconnects
+//   });
+// });
+// // ==============================websocket====================================
+
+// Start the server and log the URL where it's running
+app.listen(port, () => {
+  console.log(`Server running on http://localhost:${port}/api/logs`);
 });
 
 // =================== chat bot =================================
@@ -198,16 +338,11 @@ app.get('/api/chatbot', async (req, res) => {
   }
 });
 
-// ========================================================
+// ==========================Chat bot ended here==============================
 
 
-// Start the server and log the URL where it's running
-app.listen(port, () => {
-  console.log(`Server running on http://localhost:${port}/api/logs`);
-});
 
-
-// ============================================= new code =====================================
+// ================================ new code =====================================
 
 // const express = require('express');
 // const { Client } = require('@elastic/elasticsearch');
