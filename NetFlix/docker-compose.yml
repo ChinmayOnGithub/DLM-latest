@@ -1,6 +1,7 @@
 version: "3.8"
 
 services:
+  # NGINX service (front-end)
   netflix:
     build:
       context: .
@@ -19,3 +20,25 @@ services:
         limits:
           cpus: "0.1"
           memory: 6MB
+    networks:
+      - app_network
+
+  # MySQL Database
+  mysql:
+    build:
+      context: .
+      dockerfile: Dockerfile.mysql
+    container_name: mysql_db
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: netflix_db
+      MYSQL_USER: netflix_user
+      MYSQL_PASSWORD: password123
+    ports:
+      - "3306:3306"
+    networks:
+      - app_network
+
+networks:
+  app_network:
+    driver: bridge
