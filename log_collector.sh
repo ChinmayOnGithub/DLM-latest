@@ -16,13 +16,13 @@ while true; do
         
         # Collect logs from the pod in the specific namespace
         kubectl logs "$POD" -n "$NAMESPACE" --since=10s >> "$LOG_FILE" 2>&1
-       # since will collect the logs since last 10s if any generated 
+        # since will collect the logs since last 10s if any generated 
         # Delete the log file if it is empty
         if [ ! -s "$LOG_FILE" ]; then
             rm "$LOG_FILE"
         fi
     done
     sleep 10
-  # Adjust the sleep time as needed
+# Adjust the sleep time as needed
 done
 

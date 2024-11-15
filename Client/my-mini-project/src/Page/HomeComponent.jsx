@@ -232,10 +232,10 @@ function HomeComponent(props) {
   // Logs fetching
   React.useEffect(() => {
     axios
-      .get("http://localhost:3001/api/logs") // Replace with your correct API endpoint
+      .get("http://localhost:3001/readLogsFile") // Replace with your correct API endpoint
       .then((response) => {
-        setData(response.data.logs); // Assuming the API returns a list of logs in 'response.data.logs'
-        setFilteredData(response.data.logs); // Initialize filteredData with fetched logs
+        setData(response.data); // Assuming the API returns a list of logs in 'response.data.logs'
+        setFilteredData(response.data); // Initialize filteredData with fetched logs
         console.log(response.data);
         const data = [];
         response.data.forEach((element) => {
@@ -248,6 +248,22 @@ function HomeComponent(props) {
         console.error("Error fetching logs: ", error);
       });
   }, [filterCheck]);
+  React.useEffect(() => {
+    const socket = new WebSocket("ws://localhost:3001");
+
+    socket.onmessage = (event) => {
+      const data = JSON.parse(event.data);
+      setFilteredData(data); // Update state with the incoming data
+    };
+
+    socket.onclose = () => {
+      console.log("WebSocket connection closed");
+    };
+
+    return () => {
+      socket.close(); // Cleanup on unmount
+    };
+  }, []);
 
   //  =====================================================================================
   return (

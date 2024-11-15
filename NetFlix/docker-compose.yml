@@ -14,3 +14,8 @@ services:
       - ./logs/error.log:/var/log/nginx/error.log
     environment:
       - NGINX_LOG_LEVEL=info # Optional: adjust log level if needed
+    deploy:
+      resources:
+        limits:
+          cpus: "0.1"
+          memory: 6MB
