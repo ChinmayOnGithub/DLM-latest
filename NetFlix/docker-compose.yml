@@ -8,6 +8,8 @@ services:
       dockerfile: Dockerfile.netflix
     image: i1 # Replace with your actual image name if different
     container_name: s1
+    environment:
+      - TZ=Asia/Kolkata
     ports:
       - "80:80" # Map container's port 80 to host's port 80
     volumes:
@@ -23,21 +25,24 @@ services:
     networks:
       - app_network
 
-  # MySQL Database
-  mysql:
-    build:
-      context: .
-      dockerfile: Dockerfile.mysql
-    container_name: mysql_db
-    environment:
-      MYSQL_ROOT_PASSWORD: rootpassword
-      MYSQL_DATABASE: netflix_db
-      MYSQL_USER: netflix_user
-      MYSQL_PASSWORD: password123
-    ports:
-      - "3306:3306"
-    networks:
-      - app_network
+  # # MySQL Database
+  # mysql:
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile.mysql
+  #   container_name: mysql_db
+  #   environment:
+  #     MYSQL_ROOT_PASSWORD: rootpassword
+  #     MYSQL_DATABASE: netflix_db
+  #     MYSQL_USER: netflix_user
+  #     MYSQL_PASSWORD: password123
+  #   ports:
+  #     - "3306:3306"
+  #   volumes:
+  #     - ./mysql-logs:/var/log/mysql # Mount directory for MySQL logs
+  #     - ./my.cnf:/etc/mysql/my.cnf:ro # Mount custom MySQL configuration
+  #   networks:
+  #     - app_network
 
 networks:
   app_network:

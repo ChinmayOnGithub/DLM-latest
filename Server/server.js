@@ -193,6 +193,40 @@ app.get('/verifyUser', async (req, res) => {
 // });
 // ============================
 
+// descending order
+// app.get("/readLogsFile", (req, res) => {
+//   const mainLogPath = '/home/chinmay/MiniProject/Github/Localhost-ELK/NetFlix/logs/error.log';
+//   const subLogPath = '/home/chinmay/MiniProject/Github/Localhost-ELK/NetFlix/logs/access.log';
+
+//   // Use Promise.all to handle multiple file reads
+//   Promise.all([
+//     fs.promises.readFile(mainLogPath, 'utf-8'),
+//     fs.promises.readFile(subLogPath, 'utf-8')
+//   ])
+//     .then(([mainLogData, subLogData]) => {
+//       // Split and filter logs
+//       const mainLogArr = mainLogData.split('\n').filter(line => line.trim() !== '');
+//       const subLogArr = subLogData.split('\n').filter(line => line.trim() !== '');
+
+//       // Combine the arrays
+//       const combinedLogs = [...mainLogArr, ...subLogArr];
+
+//       // Parse and sort logs based on date and time
+//       const sortedLogs = combinedLogs.sort((a, b) => {
+//         const dateA = extractDate(a);
+//         const dateB = extractDate(b);
+//         return dateA - dateB;
+//       });
+
+//       // Send the sorted logs as JSON
+//       res.json(sortedLogs);
+//     })
+//     .catch(err => {
+//       // Handle errors
+//       res.status(500).send("Error reading the log files. " + err);
+//     });
+// });
+
 app.get("/readLogsFile", (req, res) => {
   const mainLogPath = '/home/chinmay/MiniProject/Github/Localhost-ELK/NetFlix/logs/error.log';
   const subLogPath = '/home/chinmay/MiniProject/Github/Localhost-ELK/NetFlix/logs/access.log';
@@ -210,11 +244,11 @@ app.get("/readLogsFile", (req, res) => {
       // Combine the arrays
       const combinedLogs = [...mainLogArr, ...subLogArr];
 
-      // Parse and sort logs based on date and time
+      // Parse and sort logs based on date and time (latest first)
       const sortedLogs = combinedLogs.sort((a, b) => {
         const dateA = extractDate(a);
         const dateB = extractDate(b);
-        return dateA - dateB;
+        return dateB - dateA; // Change to descending order
       });
 
       // Send the sorted logs as JSON

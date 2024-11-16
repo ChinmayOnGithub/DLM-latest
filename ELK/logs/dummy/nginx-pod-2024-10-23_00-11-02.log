@@ -1,0 +1,5 @@
+E1023 00:11:02.793748   22695 memcache.go:265] "Unhandled Error" err="couldn't get current server API group list: Get \"https://192.168.49.2:8443/api?timeout=32s\": dial tcp 192.168.49.2:8443: connect: connection refused"
+E1023 00:11:02.795313   22695 memcache.go:265] "Unhandled Error" err="couldn't get current server API group list: Get \"https://192.168.49.2:8443/api?timeout=32s\": dial tcp 192.168.49.2:8443: connect: connection refused"
+E1023 00:11:02.796928   22695 memcache.go:265] "Unhandled Error" err="couldn't get current server API group list: Get \"https://192.168.49.2:8443/api?timeout=32s\": dial tcp 192.168.49.2:8443: connect: connection refused"
+E1023 00:11:02.798432   22695 memcache.go:265] "Unhandled Error" err="couldn't get current server API group list: Get \"https://192.168.49.2:8443/api?timeout=32s\": dial tcp 192.168.49.2:8443: connect: connection refused"
+The connection to the server 192.168.49.2:8443 was refused - did you specify the right host or port?

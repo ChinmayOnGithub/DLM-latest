@@ -1,17 +1,25 @@
 # Use the official NGINX base image
 FROM nginx:alpine
 
-# Copy the HTML and CSS files to the NGINX html directory
-# Adjust the source path if the files are in different subdirectories within 'NetFlix'
-COPY index.html style.css innerData.html permission.html /usr/share/nginx/html/
+# Set timezone
+ENV TZ=Asia/Kolkata
 
-# Copy any additional static assets if needed (e.g., images, JS)
+# Install timezone data
+RUN apk add --no-cache tzdata && \
+    ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+
+# Copy static files (HTML, CSS, etc.)
+COPY ./index.html ./404.html ./503.html ./style.css ./innerData.html /usr/share/nginx/html/
+
+# Copy additional static assets (images, videos, etc.)
 COPY ./public /usr/share/nginx/html/public
 
-RUN chmod 000 /usr/share/nginx/html/permission.html
-
-# Copy the custom nginx.conf file
+# Copy custom NGINX configuration
 COPY ./nginx.conf /etc/nginx/nginx.conf
+
+# Set restrictive permissions for 'permission.html'
+COPY ./permission.html /usr/share/nginx/html/
+RUN chmod 000 /usr/share/nginx/html/permission.html
 
 # Expose port 80
 EXPOSE 80

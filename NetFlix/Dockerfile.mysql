@@ -1,9 +1,0 @@
-# Dockerfile.mysql
-
-FROM mysql:5.7
-
-# Add the initialization SQL script to set up the database
-COPY mysql-init.sql /docker-entrypoint-initdb.d/
-
-# Expose the MySQL port
-EXPOSE 3306
