@@ -132,7 +132,7 @@ function LoginActivity(props) {
               </p>
             </div>
             <div className="login_button_div">
-              <div>
+              <div style={{ display: "none" }}>
                 <div>
                   <img src="./google.svg" className="image_login"></img>
                 </div>

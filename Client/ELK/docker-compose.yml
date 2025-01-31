@@ -1,0 +1,27 @@
+version: "3.8"
+
+services:
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.9.0
+    environment:
+      - discovery.type=single-node
+      - ELASTIC_PASSWORD=elk123
+      - xpack.security.enabled=false
+    ports:
+      - "9200:9200"
+    networks:
+      - my-network
+
+  filebeat:
+    image: docker.elastic.co/beats/filebeat:8.9.0
+    volumes:
+      - ./ELK/filebeat.yml:/usr/share/filebeat/filebeat.yml
+      - ./ELK/logs/dummy:/usr/share/filebeat/logs/dummy
+    depends_on:
+      - elasticsearch
+    networks:
+      - my-network
+
+networks:
+  my-network:
+    driver: bridge

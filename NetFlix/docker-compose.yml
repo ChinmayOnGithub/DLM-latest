@@ -10,13 +10,14 @@ services:
     container_name: s1
     environment:
       - TZ=Asia/Kolkata
+      - NGINX_LOG_LEVEL=info # Optional: adjust log level if needed
+
     ports:
       - "80:80" # Map container's port 80 to host's port 80
     volumes:
       - ./logs/access.log:/var/log/nginx/access.log
       - ./logs/error.log:/var/log/nginx/error.log
-    environment:
-      - NGINX_LOG_LEVEL=info # Optional: adjust log level if needed
+
     deploy:
       resources:
         limits:
